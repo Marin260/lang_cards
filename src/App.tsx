@@ -1,13 +1,26 @@
+import { useState } from "react";
 import "./App.css";
 import { Card } from "./features/card-swap/components/Card";
-import { UploadMap } from "./features/upload-values/components/UploadMap";
+import { UploadCollection } from "./features/collections/components/UploadCollection";
+import { loadFromLocalStorage } from "./core-utils/load-from-local";
 
+const defaultCollection: { [key: string]: string | number } = {
+  key1: "Value1",
+  key2: 2,
+};
 function App() {
+  const [loadedCollection, setLoadedCollection] = useState(defaultCollection);
   return (
-    <>
-      <UploadMap />
-      <Card />
-    </>
+    <div
+      onLoad={() => {
+        const collection = loadFromLocalStorage("default-collection");
+        if (collection) setLoadedCollection(collection);
+        else setLoadedCollection(defaultCollection);
+      }}
+    >
+      <UploadCollection />
+      <Card loadedCollection={loadedCollection} />
+    </div>
   );
 }
 

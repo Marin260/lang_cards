@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: "helvetica-now";
+  src: url("./fonts/helvetica-now-display-black/HelveticaNowDisplayXBlk.otf")
+    format("opentype");
+}
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
