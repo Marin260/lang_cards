@@ -13,7 +13,7 @@ function App() {
   const [loadedCollection, setLoadedCollection] = useState(defaultCollection);
   return (
     <div className="flex w-screen border">
-      <SideBar />
+      <SideBar setLoadedCollection={setLoadedCollection} />
       <div
         className="w-full border basis-10/12"
         onLoad={() => {
