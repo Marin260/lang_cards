@@ -5,9 +5,21 @@ import { UploadCollection } from "./features/collections/components/UploadCollec
 import { loadFromLocalStorage } from "./core-utils/load-from-local";
 import { SideBar } from "./features/collections/components/SideBar";
 
-const defaultCollection: { [key: string]: string | number } = {
-  key1: "Value1",
-  key2: 2,
+const getDefultCollection = (): { [key: string]: string | number } => {
+  const defaultValue: { [key: string]: string | number } = {
+    key1: "Value1",
+    key2: 2,
+  };
+  const defaultStore = loadFromLocalStorage("default-collection");
+  if (defaultStore) return defaultStore;
+  else return defaultValue;
+};
+
+const defaultCollection = getDefultCollection();
+
+export type lsCollection = {
+  q: string;
+  a: string | number;
 };
 function App() {
   const [loadedCollection, setLoadedCollection] = useState(defaultCollection);

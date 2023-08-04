@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CardActions } from "./CardActions";
-import { parseCollection } from "../utils/parse-collection";
+import { parseCollection } from "../../../core-utils/parse-collection";
 
 export const Card = ({
   loadedCollection,
