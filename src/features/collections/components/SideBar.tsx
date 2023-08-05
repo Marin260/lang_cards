@@ -2,20 +2,24 @@ import { CollectionButton } from "./CollectionButton";
 
 export const SideBar = ({
   setLoadedCollection,
+  setQuestionNumber,
 }: {
   setLoadedCollection: (
     value: React.SetStateAction<{ [key: string]: string | number }>
   ) => void;
+  setQuestionNumber: (value: React.SetStateAction<number>) => void;
 }): JSX.Element => {
   const collectionList = Object.keys(localStorage);
   collectionList.splice(collectionList.indexOf("debug"), 1);
 
   const buttons: JSX.Element[] = [];
+
   for (const collection of collectionList)
     buttons.push(
       <CollectionButton
         collectionName={collection}
         setLoadedCollection={setLoadedCollection}
+        setQuestionNumber={setQuestionNumber}
       />
     );
 

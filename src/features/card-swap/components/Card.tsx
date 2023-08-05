@@ -1,29 +1,23 @@
-import { useEffect, useState } from "react";
 import { CardActions } from "./CardActions";
-import { parseCollection } from "../../../core-utils/parse-collection";
+import { lsCollection } from "../../../App";
 
 export const Card = ({
-  loadedCollection,
+  questions,
+  questionNumber,
+  cardValue,
+  setCardValue,
+  setQuestionNumber,
 }: {
-  loadedCollection: {
-    [key: string]: string | number;
-  };
+  questions: lsCollection[];
+  questionNumber: number;
+  cardValue: number | string;
+  setCardValue: (value: React.SetStateAction<number | string>) => void;
+  setQuestionNumber: (value: React.SetStateAction<number>) => void;
 }) => {
-  const questions = parseCollection(loadedCollection);
-  const [questionNumber, setQuestionNumber] = useState(0);
-  const [cardValue, setCardValue] = useState<number | string>(
-    questions[questionNumber].q
-  );
-  console.log(questions);
-
-  useEffect(() => {
-    setCardValue(questions[questionNumber].q);
-  }, [questionNumber]);
-
   return (
     <>
       <div
-        className="rounded-md min-w-[20rem] min-h-[12rem] flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
+        className="rounded-md max-w-[20rem] min-h-[12rem] flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
         onClick={() => {
           if (cardValue === questions[questionNumber].q)
             setCardValue(questions[questionNumber].a);
