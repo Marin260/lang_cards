@@ -22,33 +22,39 @@ export type lsCollection = {
   q: string;
   a: string | number;
 };
+
 function App() {
   const [loadedCollection, setLoadedCollection] = useState(defaultCollection);
+  const [collectionList, setCollectionList] = useState(
+    Object.keys(localStorage)
+  );
 
   const questions = parseCollection(loadedCollection);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [cardValue, setCardValue] = useState<number | string>(
     questions[questionNumber].q
   );
+
   useEffect(() => {
     setCardValue(questions[questionNumber].q);
   }, [questionNumber, loadedCollection]);
 
   return (
-    <div className="flex w-screen border">
+    <div className="flex w-screen ">
       <SideBar
+        collectionList={collectionList}
         setLoadedCollection={setLoadedCollection}
         setQuestionNumber={setQuestionNumber}
       />
       <div
-        className="w-full border basis-10/12"
+        className="flex flex-col items-center w-full mt-4 basis-10/12"
         onLoad={() => {
           const collection = loadFromLocalStorage("default-collection");
           if (collection) setLoadedCollection(collection);
           else setLoadedCollection(defaultCollection);
         }}
       >
-        <UploadCollection />
+        <UploadCollection setCollectionList={setCollectionList} />
         <Card
           questions={questions}
           questionNumber={questionNumber}

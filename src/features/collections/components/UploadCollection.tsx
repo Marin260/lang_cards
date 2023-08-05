@@ -3,7 +3,11 @@ import { loadToLocalStorage } from "../../../core-utils/load-to-local";
 
 const defaultText = `{"Insert_Json_Key": "Value Pairs"}`;
 const defaulCollectionName = "default-collection";
-export const UploadCollection = (): JSX.Element => {
+export const UploadCollection = ({
+  setCollectionList,
+}: {
+  setCollectionList: (value: React.SetStateAction<string[]>) => void;
+}): JSX.Element => {
   const [collectionValue, setCollectionValue] = useState(defaultText);
   const [collectionName, setCollectionName] = useState(defaulCollectionName);
 
@@ -37,6 +41,7 @@ export const UploadCollection = (): JSX.Element => {
       <button
         onClick={(): void => {
           loadToLocalStorage(JSON.parse(collectionValue), collectionName);
+          setCollectionList(Object.keys(localStorage));
         }}
       >
         Upload

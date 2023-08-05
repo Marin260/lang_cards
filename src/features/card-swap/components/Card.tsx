@@ -15,7 +15,7 @@ export const Card = ({
   setQuestionNumber: (value: React.SetStateAction<number>) => void;
 }) => {
   return (
-    <>
+    <div className="min-w-[20rem]">
       <div
         className="rounded-md max-w-[20rem] min-h-[12rem] flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
         onClick={() => {
@@ -31,6 +31,6 @@ export const Card = ({
         questionNumber={questionNumber}
         totalQuestions={questions.length}
       />
-    </>
+    </div>
   );
 };

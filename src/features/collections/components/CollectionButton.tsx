@@ -16,6 +16,7 @@ export const CollectionButton = ({
   if (collectionData) {
     return (
       <button
+        className="mx-2 my-1 max-w-[10rem] overflow-hidden"
         onClick={() => {
           setQuestionNumber(0);
           setLoadedCollection(collectionData);
