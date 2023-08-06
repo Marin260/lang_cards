@@ -2,14 +2,18 @@ import { CollectionButton } from "./CollectionButton";
 
 export const SideBar = ({
   setLoadedCollection,
+  activeCollection,
   setQuestionNumber,
   collectionList,
+  setActiveCollection,
 }: {
   collectionList: string[];
+  activeCollection: string;
   setLoadedCollection: (
     value: React.SetStateAction<{ [key: string]: string | number }>
   ) => void;
   setQuestionNumber: (value: React.SetStateAction<number>) => void;
+  setActiveCollection: (value: React.SetStateAction<string>) => void;
 }): JSX.Element => {
   const buttons: JSX.Element[] = [];
 
@@ -18,8 +22,10 @@ export const SideBar = ({
       buttons.push(
         <CollectionButton
           collectionName={collection}
+          activeCollection={activeCollection}
           setLoadedCollection={setLoadedCollection}
           setQuestionNumber={setQuestionNumber}
+          setActiveCollection={setActiveCollection}
         />
       );
 

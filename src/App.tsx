@@ -5,6 +5,7 @@ import { UploadCollection } from "./features/collections/components/UploadCollec
 import { loadFromLocalStorage } from "./core-utils/load-from-local";
 import { SideBar } from "./features/collections/components/SideBar";
 import { parseCollection } from "./core-utils/parse-collection";
+import { loadToLocalStorage } from "./core-utils/load-to-local";
 
 const getDefultCollection = (): { [key: string]: string | number } => {
   const defaultValue: { [key: string]: string | number } = {
@@ -13,7 +14,10 @@ const getDefultCollection = (): { [key: string]: string | number } => {
   };
   const defaultStore = loadFromLocalStorage("default-collection");
   if (defaultStore) return defaultStore;
-  else return defaultValue;
+  else {
+    loadToLocalStorage(defaultValue, "default-collection");
+    return defaultValue;
+  }
 };
 
 const defaultCollection = getDefultCollection();
@@ -28,6 +32,8 @@ function App() {
   const [collectionList, setCollectionList] = useState(
     Object.keys(localStorage)
   );
+  const [activeCollection, setActiveCollection] =
+    useState("default-collection");
 
   const questions = parseCollection(loadedCollection);
   const [questionNumber, setQuestionNumber] = useState(0);
@@ -43,8 +49,10 @@ function App() {
     <div className="flex w-screen ">
       <SideBar
         collectionList={collectionList}
+        activeCollection={activeCollection}
         setLoadedCollection={setLoadedCollection}
         setQuestionNumber={setQuestionNumber}
+        setActiveCollection={setActiveCollection}
       />
       <div
         className="flex flex-col items-center w-full mt-4 basis-10/12"
