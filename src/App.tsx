@@ -19,7 +19,6 @@ const getDefultCollection = (): { [key: string]: string | number } => {
     return defaultValue;
   }
 };
-
 const defaultCollection = getDefultCollection();
 
 export type lsCollection = {
@@ -45,14 +44,23 @@ function App() {
     setCardValue(questions[questionNumber].q);
   }, [questionNumber, loadedCollection]);
 
+  const updateCollection = (
+    collectionName: string,
+    collectionData: {
+      [key: string]: string | number;
+    }
+  ): void => {
+    setActiveCollection(collectionName);
+    setQuestionNumber(0);
+    setLoadedCollection(collectionData);
+  };
+
   return (
     <div className="flex w-screen ">
       <SideBar
         collectionList={collectionList}
         activeCollection={activeCollection}
-        setLoadedCollection={setLoadedCollection}
-        setQuestionNumber={setQuestionNumber}
-        setActiveCollection={setActiveCollection}
+        updateCollection={updateCollection}
       />
       <div
         className="flex flex-col items-center w-full mt-4 basis-10/12"

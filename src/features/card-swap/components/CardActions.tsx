@@ -1,11 +1,11 @@
 export const CardActions = ({
-  setQuestionNumber,
   questionNumber,
   totalQuestions,
+  setQuestionNumber,
 }: {
-  setQuestionNumber: (value: React.SetStateAction<number>) => void;
   questionNumber: number;
   totalQuestions: number;
+  setQuestionNumber: (value: React.SetStateAction<number>) => void;
 }): JSX.Element => {
   return (
     <div className="p-4">

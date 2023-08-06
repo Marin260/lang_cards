@@ -17,7 +17,7 @@ export const Card = ({
   return (
     <div className="min-w-[20rem]">
       <div
-        className="rounded-md max-w-[20rem] min-h-[12rem] flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
+        className="hover:cursor-pointer rounded-md max-w-[20rem] min-h-[12rem] flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500"
         onClick={() => {
           if (cardValue === questions[questionNumber].q)
             setCardValue(questions[questionNumber].a);

@@ -3,17 +3,16 @@ import { loadFromLocalStorage } from "../../../core-utils/load-from-local";
 export const CollectionButton = ({
   collectionName,
   activeCollection,
-  setLoadedCollection,
-  setQuestionNumber,
-  setActiveCollection,
+  updateCollection,
 }: {
   collectionName: string;
   activeCollection: string;
-  setLoadedCollection: (
-    value: React.SetStateAction<{ [key: string]: string | number }>
+  updateCollection: (
+    collectionName: string,
+    collectionData: {
+      [key: string]: string | number;
+    }
   ) => void;
-  setQuestionNumber: (value: React.SetStateAction<number>) => void;
-  setActiveCollection: (value: React.SetStateAction<string>) => void;
 }): JSX.Element => {
   const collectionData = loadFromLocalStorage(collectionName);
 
@@ -27,9 +26,7 @@ export const CollectionButton = ({
       <button
         className={buttonStyle}
         onClick={() => {
-          setActiveCollection(collectionName);
-          setQuestionNumber(0);
-          setLoadedCollection(collectionData);
+          updateCollection(collectionName, collectionData);
         }}
       >
         {collectionName}

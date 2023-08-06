@@ -1,19 +1,18 @@
 import { CollectionButton } from "./CollectionButton";
 
 export const SideBar = ({
-  setLoadedCollection,
-  activeCollection,
-  setQuestionNumber,
   collectionList,
-  setActiveCollection,
+  activeCollection,
+  updateCollection,
 }: {
   collectionList: string[];
   activeCollection: string;
-  setLoadedCollection: (
-    value: React.SetStateAction<{ [key: string]: string | number }>
+  updateCollection: (
+    collectionName: string,
+    collectionData: {
+      [key: string]: string | number;
+    }
   ) => void;
-  setQuestionNumber: (value: React.SetStateAction<number>) => void;
-  setActiveCollection: (value: React.SetStateAction<string>) => void;
 }): JSX.Element => {
   const buttons: JSX.Element[] = [];
 
@@ -23,9 +22,7 @@ export const SideBar = ({
         <CollectionButton
           collectionName={collection}
           activeCollection={activeCollection}
-          setLoadedCollection={setLoadedCollection}
-          setQuestionNumber={setQuestionNumber}
-          setActiveCollection={setActiveCollection}
+          updateCollection={updateCollection}
         />
       );
 
