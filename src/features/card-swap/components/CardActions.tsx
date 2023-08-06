@@ -8,7 +8,7 @@ export const CardActions = ({
   setQuestionNumber: (value: React.SetStateAction<number>) => void;
 }): JSX.Element => {
   return (
-    <div className="p-4">
+    <div className="p-4 mx-auto w-max">
       <button
         className="rounded-md font-helvetica-now"
         onClick={() => {
@@ -16,7 +16,7 @@ export const CardActions = ({
           else setQuestionNumber(questionNumber - 1);
         }}
       >
-        Previous
+        Prev
       </button>
       <p className="inline p-2 font-light font-helvetica-now">
         {questionNumber + 1}/{totalQuestions}

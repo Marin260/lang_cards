@@ -54,31 +54,45 @@ function App() {
     setQuestionNumber(0);
     setLoadedCollection(collectionData);
   };
+  const [activeUpload, setActiveUpload] = useState("hidden");
 
   return (
-    <div className="flex w-screen ">
-      <SideBar
-        collectionList={collectionList}
-        activeCollection={activeCollection}
-        updateCollection={updateCollection}
-      />
-      <div
-        className="flex flex-col items-center w-full mt-4 basis-10/12"
-        onLoad={() => {
-          const collection = loadFromLocalStorage("default-collection");
-          if (collection) setLoadedCollection(collection);
-          else setLoadedCollection(defaultCollection);
+    <div>
+      <div className="flex w-screen ">
+        <SideBar
+          collectionList={collectionList}
+          activeCollection={activeCollection}
+          updateCollection={updateCollection}
+        />
+        <div
+          className="flex flex-col items-center w-full mt-4 basis-9/12"
+          onLoad={() => {
+            const collection = loadFromLocalStorage("default-collection");
+            if (collection) setLoadedCollection(collection);
+            else setLoadedCollection(defaultCollection);
+          }}
+        >
+          <Card
+            questions={questions}
+            questionNumber={questionNumber}
+            cardValue={cardValue}
+            setCardValue={setCardValue}
+            setQuestionNumber={setQuestionNumber}
+          />
+          <div className={activeUpload}>
+            <UploadCollection setCollectionList={setCollectionList} />
+          </div>
+        </div>
+      </div>
+      <button
+        className="fixed bottom-0 right-0"
+        onClick={() => {
+          if (activeUpload === "hidden") setActiveUpload("block");
+          else setActiveUpload("hidden");
         }}
       >
-        <UploadCollection setCollectionList={setCollectionList} />
-        <Card
-          questions={questions}
-          questionNumber={questionNumber}
-          cardValue={cardValue}
-          setCardValue={setCardValue}
-          setQuestionNumber={setQuestionNumber}
-        />
-      </div>
+        Uplaoad collection
+      </button>
     </div>
   );
 }

@@ -27,8 +27,8 @@ export const SideBar = ({
       );
 
   return (
-    <div className="w-full h-screen overflow-y-auto basis-2/12 bg-zinc-800">
-      <div className="flex flex-col p-2">{buttons}</div>
+    <div className="w-full h-screen overflow-y-auto basis-3/12 bg-zinc-800">
+      <div className="flex flex-col items-center p-2">{buttons}</div>
     </div>
   );
 };

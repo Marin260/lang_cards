@@ -18,8 +18,8 @@ export const CollectionButton = ({
 
   const buttonStyle =
     collectionName !== activeCollection
-      ? "mx-2 my-1 max-w-[10rem] overflow-hidden"
-      : "mx-2 my-1 max-w-[10rem] overflow-hidden bg-white text-black";
+      ? "mx-2 my-1 w-[10rem] overflow-hidden"
+      : "mx-2 my-1 w-[10rem] overflow-hidden bg-white text-black";
 
   if (collectionData) {
     return (

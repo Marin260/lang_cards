@@ -30,22 +30,24 @@ export const UploadCollection = ({
         defaultValue={collectionValue}
       ></textarea>
       <br />
-      <button
-        onClick={(): void => {
-          const cleaned = JSON.stringify(JSON.parse(collectionValue));
-          setCollectionValue(cleaned);
-        }}
-      >
-        Format
-      </button>
-      <button
-        onClick={(): void => {
-          loadToLocalStorage(JSON.parse(collectionValue), collectionName);
-          setCollectionList(Object.keys(localStorage));
-        }}
-      >
-        Upload
-      </button>
+      <div>
+        <button
+          onClick={(): void => {
+            const cleaned = JSON.stringify(JSON.parse(collectionValue));
+            setCollectionValue(cleaned);
+          }}
+        >
+          Format
+        </button>
+        <button
+          onClick={(): void => {
+            loadToLocalStorage(JSON.parse(collectionValue), collectionName);
+            setCollectionList(Object.keys(localStorage));
+          }}
+        >
+          Upload
+        </button>
+      </div>
     </div>
   );
 };
